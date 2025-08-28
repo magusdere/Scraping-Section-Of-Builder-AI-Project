@@ -1,0 +1,23 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+
+# --- Virtualenv ---
+.env/
+.venv/
+env/
+venv/
+ENV/
+
+# --- Configs ---
+*.log
+*.sqlite3
+
+# --- API keys ---
+.env
+
+apikey.env
