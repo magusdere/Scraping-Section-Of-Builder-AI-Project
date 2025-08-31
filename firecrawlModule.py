@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from google import genai
 import os
 import json
+import config
 
 # -----------------------------
 # 1️⃣ Cargar API Keys
@@ -18,12 +19,12 @@ gemini_client = genai.Client(api_key=GEMINI_API_KEY)
 firecrawl_client = Firecrawl(api_key=FIRECRAWL_API_KEY)
 
 # Paso 1: prompt del usuario
-user_prompt = input("Ingresa tu idea de negocio: ")
+config.user_prompt = input("Ingresa tu idea de negocio: ")
 
 # Paso 2: simplificar con Gemini
 llm_response = gemini_client.models.generate_content(
     model="gemini-2.5-flash",
-    contents=f"Según este prompt: '{user_prompt}', Resumí la idea de negocio en una sola frase simple, en el formato: [tipo de negocio] en [ubicación]. Por ejemplo para que te guies, el usuario ingresa: Estoy pensando en arrancar un negocio porque me gusta mucho la tecnología y veo que en Salta no hay tantas tiendas, entonces me gustaría algo de venta de celulares, accesorios y notebooks, ¿qué opinás?, ahi tu devuelves: venta de artículos de tecnología en Salta Argentina"
+    contents=f"Según este prompt: '{config.user_prompt}', Resumí la idea de negocio en una sola frase simple, en el formato: [tipo de negocio] en [ubicación]. Por ejemplo para que te guies, el usuario ingresa: Estoy pensando en arrancar un negocio porque me gusta mucho la tecnología y veo que en Salta no hay tantas tiendas, entonces me gustaría algo de venta de celulares, accesorios y notebooks, ¿qué opinás?, ahi tu devuelves: venta de artículos de tecnología en Salta Argentina"
 )
 
 # Extraer el texto generado
